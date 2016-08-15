@@ -1,0 +1,16 @@
+<html>
+<head>
+  <script>
+    (function(){
+      //Redirect for cloudfront weird interaction with SPAs
+      if (window.location.pathname)
+      {
+        window.location.replace('/#'+window.location.pathname);
+      }
+    })();
+  </script>
+</head>
+<body>
+  Sorry, not found
+</body>
+</html>

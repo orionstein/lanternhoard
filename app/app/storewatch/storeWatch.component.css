@@ -1,0 +1,20 @@
+.booklist{
+  width: 100%;
+  list-style: none;
+}
+
+.bookName{
+  display: inline-block;
+}
+
+.rem{ 
+  display: inline-block; 
+}
+
+.bookAuthor{
+  display: inline-block;
+}
+
+.entryDate{
+  color: #b54;
+}

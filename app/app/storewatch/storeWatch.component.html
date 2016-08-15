@@ -1,0 +1,18 @@
+<div class="store-watch-elm g--10 m--1">
+  <div id="store-watch-elm-embed"></div>
+  <div class="g--4" style="z-index:11">
+    <input [(ngModel)]="modals.successModal" type="checkbox" id="modal-success">
+    <div class="modal-content g--4">
+      <p>Thanks! You should recieve a confirmation text shortly.</p>
+      <label class="modal-trigger right" for="modal-success">OK</label>
+    </div>
+  </div>
+  <div class="g--4" style="z-index:11">
+    <input [(ngModel)]="modals.errorModal" type="checkbox" id="modal-error">
+    <div class="modal-content g--4">
+      <p>Sorry, this number is already subscribed.</p>
+      <label class="modal-trigger right" for="modal-error">OK</label>
+    </div>
+  </div>
+  <div class="overlay" *ngIf="modals.successModal || modals.errorModal" (click)="closeModals()">&nbsp;</div> 
+</div>

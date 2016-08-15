@@ -1,0 +1,33 @@
+@import './_imports/_variables';
+
+header {
+	width: 100%;
+	padding-top: $space-small;
+	padding-bottom: $space-small;
+	background: $primary;
+	margin-bottom: $space-big*1.75;
+	h1, h2, h3 {
+		color: white;
+	}
+  .logo{
+    vertical-align: bottom;
+    height: 50px;
+    width: 50px;
+  }
+	@media screen and (max-width: $media-med) {
+		margin-bottom: $space-big*0.85;
+		padding-top: $space-med;
+	}
+	@media screen and (max-width: $media-small) {
+		padding-top: $space-big;
+		padding-bottom: $space-small*0.5;
+		margin-bottom: $space-small*0.85;
+    h1 {
+      font-size: 1.4rem;
+      line-height: 120%;
+    }
+    h2 {
+      font-size: 1.2rem;
+    }
+	}
+}

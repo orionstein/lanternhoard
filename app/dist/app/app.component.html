@@ -1,0 +1,36 @@
+<header class="container--baseline bg--midnight-blue no-margin-vertical">
+  <h1 class="m--1 g--4 g-s--12 lh-header no-margin-vertical-s cursor" [routerLink]="['Home']">
+    <!--svg class="logo">
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_18" y2="48.90954" x2="22.80059" y1="40.26758" x1="12.30677" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_19" y2="41.90203" x2="38.78018" y1="48.69214" x1="21.71364" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_20" y2="13.43721" x2="38.06896" y1="42.27777" x1="38.19242" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <path stroke-dasharray="2,2" id="svg_32" d="m23.86799,32.8924l4.01572,-3.36775l-2.78012,-4.49417l-3.83039,3.74516c14.90966,-8.24989 -6.69289,5.91343 2.59479,4.11679l0,0l0,-0.00002z" stroke-width="1.5" stroke="#fff205" fill="none"/>
+      <line transform="rotate(-2, 22.9066, 32.6629)" stroke-linecap="null" stroke-linejoin="null" id="svg_21" y2="16.73699" x2="23.21525" y1="48.58882" x1="22.59796" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_22" y2="10.54939" x2="12.22223" y1="41.0432" x1="12.5926" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_23" y2="17.46297" x2="22.59259" y1="9.97639" x1="11.91091" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_24" y2="13.3889" x2="38.75603" y1="17.46297" x1="22.59259" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_26" y2="10.17902" x2="24.69136" y1="17.12749" x1="23.20988" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_27" y2="8.01677" x2="21.88481" y1="8.14022" x1="12.12026" stroke-width="1.5" stroke="#ffffff" fill="none" transform="rotate(-23, 17.0025, 8.0785)"/>
+      <line stroke-linecap="null" stroke-linejoin="null" id="svg_28" y2="8.72497" x2="28.75468" y1="11.07065" x1="39.3143" stroke-width="1.5" stroke="#ffffff" fill="none" transform="rotate(28, 34.0345, 9.89782)"/>
+      <ellipse ry="4.32098" rx="4.25926" id="svg_31" cy="5.36421" cx="25.8642" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+    </svg-->
+    <span>{{title}}</span>
+  </h1>
+  <input type="checkbox" id="nav--horizontal-responsive" />
+  <label for="nav--horizontal-responsive"><i class="zmdi zmdi-menu"></i></label>
+  <nav class="g--3 nav--horizontal">
+    <ul>
+      <li class="color--midnight-blue">
+        <a [routerLink]="['StoreWatch']" class="homeButton">StoreWatch</a>
+      </li>
+      <li class="color--midnight-blue">
+        <a [routerLink]="['HuntsMan']" class="homeButton">Huntsman</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<router-outlet style="min-height:400px;"></router-outlet>
+<div class="g--10 m--1">
+  &copy; 2016 Orion Free <br />
+  Kingdom Death &copy; Poots 2007-2016. <a [routerLink]="['About']" class="homeButton">All Rights Reserved to their respective owners.</a>
+</div>

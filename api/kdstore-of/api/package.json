@@ -1,0 +1,19 @@
+{
+  "name": "kdstore-of",
+  "version": "0.0.1",
+  "description": "A Serverless Project and its Serverless Plugin dependencies.",
+  "author": "me",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "cheerio": "*",
+    "querystring": "^0.2.0",
+    "request": "*",
+    "twilio": "*"
+  }
+}

@@ -1,0 +1,20 @@
+@import './_imports/_variables';
+@import './_imports/_colors';
+
+.tooltip {
+	position: relative;
+	&:hover {
+		&:after {
+			position: absolute;
+			content: attr(data-text);
+			background: lighten($clouds, 10%);
+			border-radius: $border-radius-small;
+      width: 200px;
+			padding: $space-small*0.8;
+			bottom: -2.5em;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 2;
+		}
+	}
+}
