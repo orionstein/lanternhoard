@@ -1,6 +1,6 @@
 app/node_modules/
 app/node_modules/*
 node_modules/
-elm_stuff/
-app/elm_stuff/
-app/elm_stuff/*
+elm-stuff/
+app/elm-stuff/
+app/elm-stuff/*
