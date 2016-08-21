@@ -4,24 +4,17 @@
     <title>The Lantern Hoard</title>
     <base href="/">
     <meta name="viewport" content="width=device-width,initial-scale=1">    
-    <!-- link rel="stylesheet" href="styles.css" -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="The Lantern Hoard is a fan site for Kingdom Death Monster. The Lantern Hoard contains tools and content that help and celebrate the enjoyment of Kingdom Death!">
+    <meta name="keywords" content="kingdom, death, rpg, lantern, hoard, boardgame, shenanigans">
+    <meta name="robots" content="index">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="app.css">
-    <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
     <script src="app/vendors/es6-shim.min.js"></script>
     <script src="app/vendors/system-polyfills.js"></script>
-    <script src="app/vendors/shims_for_IE.js"></script>   
-    <script src="app/vendors/angular2-polyfills.js"></script>
-    <script src="app/vendors/system.src.js"></script>
-    <script src="app/vendors/Rx.js"></script>
-    <script src="app/vendors/angular2.dev.js"></script>
-    <script src="app/vendors/router.dev.js"></script>
-    <script src="app/vendors/http.dev.js"></script>
-    <script src="app/vendors/lodash.min.js"></script>
-    <!-- 2. Configure SystemJS -->
+    <script src="app/vendors/vendor-core.js"></script>
     <script src="app/vendors/elm-app.js"></script>
-    <!-- 2. Configure SystemJS -->
     <script>
       System.config({
         packages: {        
@@ -32,10 +25,9 @@
         }
       });
       System.import('app/main')
-            .then(null, console.error.bind(console));
+      .then(null, console.error.bind(console));
     </script>
   </head>
-  <!-- 3. Display the application -->
   <body>
     <lanternhoard class="g--12 no-margin-vertical">Loading...</lanternhoard>
   </body>

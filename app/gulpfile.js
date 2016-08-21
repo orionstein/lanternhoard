@@ -49,11 +49,27 @@ gulp.task('copyvendor', function() {
       'node_modules/angular2/bundles/angular2-polyfills.js',
       'node_modules/systemjs/dist/system.src.js',
       'node_modules/rxjs/bundles/Rx.js',
-      'node_modules/angular2/bundles/angular2.dev.js',
-      'node_modules/angular2/bundles/router.dev.js',
-      'node_modules/angular2/bundles/http.dev.js',
+      'node_modules/angular2/bundles/angular2.min.js',
+      'node_modules/angular2/bundles/router.min.js',
+      'node_modules/angular2/bundles/http.min.js',
       'node_modules/lodash/lodash.min.js',
     ])
+    .pipe(gulp.dest('dist/app/vendors'));
+});
+
+gulp.task('vendor1js', function() {
+  return gulp
+    .src([
+      'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
+      'node_modules/angular2/bundles/angular2-polyfills.js',
+      'node_modules/systemjs/dist/system.src.js',
+      'node_modules/rxjs/bundles/Rx.js',
+      'node_modules/angular2/bundles/angular2.min.js',
+      'node_modules/angular2/bundles/router.min.js',
+      'node_modules/angular2/bundles/http.min.js',
+      'node_modules/lodash/lodash.min.js',
+    ])
+    .pipe(concat('vendor-core.js'))
     .pipe(gulp.dest('dist/app/vendors'));
 });
 
@@ -138,6 +154,7 @@ gulp.task('default', function() {
   return run([
     'clean',
     'vendorjs',
+    'vendor1js',
     'copyvendor',
     'copyElm',
     'buildcss',
