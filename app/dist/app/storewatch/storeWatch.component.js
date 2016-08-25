@@ -45,8 +45,10 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                     this._store.getStoreEntry()
                         .subscribe(function (entries) {
                         _this.storeEntries = entries;
+                        _this._store.firstItem = _.head(_this.storeEntries);
+                        _this._store.lastItem = _.last(_this.storeEntries);
                         setTimeout(function () {
-                            _this.elm.ports.entries.send(entries);
+                            _this.elm.ports.entries.send(_this.storeEntries);
                         }, 0);
                         _this._store.startPolling()
                             .takeWhile(function (e) {
@@ -58,9 +60,11 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                             }
                         })
                             .subscribe(function (entries) {
-                            if (entries !== _this.storeEntries) {
-                                _this.storeEntries = entries;
-                                _this.elm.ports.entries.send(entries);
+                            if (entries) {
+                                _this.storeEntries = entries.concat(_this.storeEntries);
+                                _this._store.firstItem = _.head(_this.storeEntries);
+                                _this._store.lastItem = _.last(_this.storeEntries);
+                                _this.elm.ports.entries.send(_this.storeEntries);
                             }
                         });
                     });
@@ -105,7 +109,22 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                     this.modals.errorModal = false;
                 };
                 StoreWatchComponent.prototype.updateFeed = function (data) {
+                    var _this = this;
                     this.elm.ports.entries.send(data);
+                };
+                StoreWatchComponent.prototype.loadMore = function () {
+                    var _this = this;
+                    console.log('bwah');
+                    this._store.loadMoreEntries()
+                        .subscribe(function (entries) {
+                        console.log(entries);
+                        console.log('bwah');
+                        _this.storeEntries = _this.storeEntries.concat(entries);
+                        console.log(_this.storeEntries);
+                        _this._store.firstItem = _.head(_this.storeEntries);
+                        _this._store.lastItem = _.last(_this.storeEntries);
+                        _this.elm.ports.entries.send(_this.storeEntries);
+                    });
                 };
                 StoreWatchComponent = __decorate([
                     core_1.Component({

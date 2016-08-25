@@ -34,6 +34,13 @@ gulp.task('buildscss', function() {
       .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('copyDeploy', function() {
+  return gulp
+    .src('dist-make')
+    .pipe(concat('Makefile'))
+    .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('copyElm', function() {
   return gulp
     .src('elm/storewatch/elm-app.js')
@@ -153,6 +160,7 @@ gulp.task('build', function() {
 gulp.task('default', function() {
   return run([
     'clean',
+    'copyDeploy',
     'vendorjs',
     'vendor1js',
     'copyvendor',

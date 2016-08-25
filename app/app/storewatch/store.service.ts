@@ -9,8 +9,19 @@ export class StoreService {
   constructor (private http: Http) {}
 
   //private url = 'https://s3.amazonaws.com/kingdomdeath/kingdomdeathstore.json';  // URL to web api
-  private dataUrl = 'https://s3.amazonaws.com/kingdomdeath/kingdomdeathstore.json';  // URL to web api
+  private dataUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStoreGetItems';  // URL to web api
+  private pageUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStorePageItems';  // URL to web api
   private apiUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStoreSubscribe';  // URL to web api
+
+  public firstItem;
+  public lastItem;
+
+  loadMoreEntries() {
+    let lmUrl = this.pageUrl + '/backward/' + this.lastItem.date + '/10';
+    let getCall = this.http.get(lmUrl)
+    .map(x => x.json())
+    return getCall
+  }
 
   getStoreEntry () {
     let getCall = this.http.get(this.dataUrl)
@@ -19,9 +30,13 @@ export class StoreService {
   }
 
   startPolling(t){
-    return Observable.interval(60000) 
-    .switchMap(() => this.http.get(this.dataUrl))
-    .map(x => x.json());
+    let pollCall = Observable.interval(60000) 
+    .switchMap(() => {
+      let pollUrl = this.pageUrl + '/forward/' + this.firstItem.date + '/10';
+      return this.http.get(pollUrl)
+    })
+    .map(x => x.json())
+    return pollCall
   }
 
   submitMobile(num) {

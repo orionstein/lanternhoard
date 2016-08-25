@@ -4,15 +4,9 @@ import Html exposing (..)
 import Html.App as App
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Html.Lazy exposing (..)
-import Maybe exposing (..)
-import String exposing (..)
-import Dict exposing (..)
 import Json.Encode exposing (..)
 import Json.Decode exposing (..)
-import JsonHelper exposing (..)
 import StoreEntry exposing (..)
-import StoreItem exposing (..)
 import StoreEntryDiff exposing (..)
 
 

@@ -2,7 +2,6 @@ port module StoreItem exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Json.Encode exposing (..)
 import Json.Decode exposing (..)
 import JsonHelper exposing (..)

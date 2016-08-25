@@ -58,6 +58,12 @@
   cursor: pointer;
 }
 
+.entryItem {
+  &::last{
+    display: none;
+  }
+}
+
 .storeItem {
   &.New {
     background: $nephritis;

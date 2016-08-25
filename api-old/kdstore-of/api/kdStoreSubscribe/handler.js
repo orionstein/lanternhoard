@@ -27,8 +27,6 @@ module.exports.handler = function(event, context) {
       to: number,
       from: '+15719913883'
     }, function(err, message) {
-      console.log(err);
-      console.log(message);
       context.succeed(true);
     });
   }).catch(function(err, msg) {

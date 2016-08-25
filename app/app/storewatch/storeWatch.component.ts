@@ -35,8 +35,10 @@ export class StoreWatchComponent implements OnInit {
     this._store.getStoreEntry()
     .subscribe( entries => {
       _this.storeEntries = entries;
+      _this._store.firstItem = _.head(_this.storeEntries);
+      _this._store.lastItem = _.last(_this.storeEntries);
       setTimeout(function(){
-        _this.elm.ports.entries.send(entries);
+        _this.elm.ports.entries.send(_this.storeEntries);
       }, 0);
       _this._store.startPolling()
       .takeWhile(function(e){ 
@@ -46,10 +48,12 @@ export class StoreWatchComponent implements OnInit {
           return false; } 
       })
       .subscribe( entries => {
-        if (entries !== _this.storeEntries)
+        if (entries)
         {
-          _this.storeEntries = entries;
-          _this.elm.ports.entries.send(entries);
+          _this.storeEntries = entries.concat(_this.storeEntries);
+          _this._store.firstItem = _.head(_this.storeEntries);
+          _this._store.lastItem = _.last(_this.storeEntries);
+          _this.elm.ports.entries.send(_this.storeEntries);
         }
       })
     })
@@ -102,7 +106,23 @@ export class StoreWatchComponent implements OnInit {
   }
 
   updateFeed(data) {
+    let _this = this;
     this.elm.ports.entries.send(data);
+  }
+
+  loadMore() {
+    let _this = this;
+    console.log('bwah');
+    this._store.loadMoreEntries()
+    .subscribe( entries => {
+      console.log(entries);
+      console.log('bwah');
+      _this.storeEntries = _this.storeEntries.concat(entries);
+      console.log(_this.storeEntries);
+      _this._store.firstItem = _.head(_this.storeEntries);
+      _this._store.lastItem = _.last(_this.storeEntries);
+      _this.elm.ports.entries.send(_this.storeEntries);
+    });
   }
 }
 

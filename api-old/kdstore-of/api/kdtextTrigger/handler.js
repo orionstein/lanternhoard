@@ -7,12 +7,12 @@ var client = new twilio.RestClient(accountSid, authToken);
 var dynamo = require('../shared/dynamoDocHelper');
 
 module.exports.handler = function(event, context) {
+  //TODO: parse most recent items, add changes to text. Limit text to 1/day
   var params = {
     TableName: 'kdm-numbers'
   };
   return dynamo.scanAsync(params).then(function(data) {
     data.Items.forEach(function(n) {
-      console.log(n);
       client.messages.create({
         body: 'KDM Store Update - https://www.lanternhoard.com/storewatch',
         to: n.mobile,

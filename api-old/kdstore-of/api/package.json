@@ -13,6 +13,7 @@
     "bluebird": "^3.4.1",
     "cheerio": "*",
     "querystring": "^0.2.0",
+    "msgpack": "*",
     "request": "*",
     "twilio": "*"
   }

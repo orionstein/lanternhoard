@@ -8675,10 +8675,6 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _elm_lang$html$Html_Lazy$lazy3 = _elm_lang$virtual_dom$VirtualDom$lazy3;
-var _elm_lang$html$Html_Lazy$lazy2 = _elm_lang$virtual_dom$VirtualDom$lazy2;
-var _elm_lang$html$Html_Lazy$lazy = _elm_lang$virtual_dom$VirtualDom$lazy;
-
 var _rluiten$elm_date_extra$Date_Extra_Core$prevMonth = function (month) {
 	var _p0 = month;
 	switch (_p0.ctor) {
@@ -9656,6 +9652,21 @@ var _user$project$StoreItem$decodeStoreItem = A2(
 	_elm_lang$core$Json_Decode$maybe(
 		A2(_elm_lang$core$Json_Decode_ops[':='], 'link', _elm_lang$core$Json_Decode$string)));
 
+var _user$project$StoreEntry$StoreEntry = F2(
+	function (a, b) {
+		return {date: a, items: b};
+	});
+var _user$project$StoreEntry$decodeStoreEntry = A2(
+	_user$project$JsonHelper$apply,
+	A2(
+		_user$project$JsonHelper$apply,
+		_user$project$JsonHelper$constructing(_user$project$StoreEntry$StoreEntry),
+		A2(_elm_lang$core$Json_Decode_ops[':='], 'date', _elm_lang$core$Json_Decode$float)),
+	A2(
+		_elm_lang$core$Json_Decode_ops[':='],
+		'items',
+		_elm_lang$core$Json_Decode$list(_user$project$StoreItem$decodeStoreItem)));
+
 var _user$project$StoreItemDiff$storeItemDiffView = F2(
 	function (act, item) {
 		return A2(
@@ -9872,21 +9883,6 @@ var _user$project$StoreItemDiff$StoreItemDiff = F5(
 	function (a, b, c, d, e) {
 		return {title: a, price: b, link: c, status: d, priceChange: e};
 	});
-
-var _user$project$StoreEntry$StoreEntry = F2(
-	function (a, b) {
-		return {date: a, items: b};
-	});
-var _user$project$StoreEntry$decodeStoreEntry = A2(
-	_user$project$JsonHelper$apply,
-	A2(
-		_user$project$JsonHelper$apply,
-		_user$project$JsonHelper$constructing(_user$project$StoreEntry$StoreEntry),
-		A2(_elm_lang$core$Json_Decode_ops[':='], 'date', _elm_lang$core$Json_Decode$float)),
-	A2(
-		_elm_lang$core$Json_Decode_ops[':='],
-		'items',
-		_elm_lang$core$Json_Decode$list(_user$project$StoreItem$decodeStoreItem)));
 
 var _user$project$StoreEntryDiff$storeEntryView = F2(
 	function (act, entry) {

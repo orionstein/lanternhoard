@@ -2,20 +2,16 @@ port module StoreEntryDiff exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Date exposing (..)
 import Date.Extra.Config.Config_en_us exposing (config)
 import Date.Extra.Format as Format exposing (format)
 import StoreEntry exposing (..)
 import Set exposing (..)
 import String exposing (..)
-import Dict exposing (..)
 import List exposing (..)
 import StoreItem exposing (..)
 import StoreItemDiff exposing (..)
 import Json.Encode exposing (..)
-import Json.Decode exposing (..)
-import JsonHelper exposing (..)
 
 diffAllEntries : List StoreEntry -> List StoreEntryDiff
 diffAllEntries entries =
