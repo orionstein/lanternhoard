@@ -10,6 +10,7 @@ exports.handler = function(event, context, callback) {
     Key: sesNotification.mail.messageId
   }, function(err, data) {
     if (err) {
+      console.log(err);
       callback(err);
     } else {
       var matches = /\n--[^\n\r]*\r?\nContent-Type: text\/plain[\s\S]*?\r?\n\r?\n([\s\S]*?)\n\r?\n--/gim.exec(data.Body);

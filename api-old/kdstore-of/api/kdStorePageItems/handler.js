@@ -1,21 +1,21 @@
 'use strict';
 
-var dynamo = require('../shared/dynamoDocHelper');
-var db = require('../shared/dynamoHelper');
-var msgpack = require('msgpack');
-var _ = require('lodash');
+const dynamo = require('../shared/dynamoDocHelper');
+const db = require('../shared/dynamoHelper');
+const msgpack = require('msgpack');
+const _ = require('lodash');
 
 module.exports.handler = function(event, context, cb) {
-  var count = event.count;
-  var fromDate = event.fromDate;
-  var direction = event.direction === 'forward' ? true : false;
-  var expr;
+  let count = event.count;
+  let fromDate = event.fromDate;
+  let direction = event.direction === 'forward' ? true : false;
+  let expr;
   if (direction) {
     expr = "#status = :ok and #Date > :date";
   } else {
     expr = "#status = :ok and #Date < :date";
   }
-  var params = {
+  let params = {
     TableName: 'kdm-entries',
     IndexName: 'status-orderDate-index',
     KeyConditionExpression: expr,
@@ -35,14 +35,54 @@ module.exports.handler = function(event, context, cb) {
     Limit: event.count || 10
   };
   return db.queryAsync(params).then(function(data) {
-    var items = _.map(data.Items, function(item) {
+    let buildResult = {};
+    buildResult.items = _.map(data.Items, function(item) {
       item = {
         items: msgpack.unpack(item.data.B),
         date: parseInt(item.entryDate.N)
       };
       return item;
     });
-    context.succeed(items);
+    let checkExpr = "#status = :ok and #Date < :date";
+    if (data.LastEvaluatedKey)
+    {
+      let fromDate = data.LastEvaluatedKey.orderDate.N;
+      let checkParams = {
+        TableName: 'kdm-entries',
+        IndexName: 'status-orderDate-index',
+        KeyConditionExpression: checkExpr,
+        ExpressionAttributeNames: {
+          "#status": "status",
+          "#Date": "orderDate"
+        },
+        ExpressionAttributeValues: {
+          ":ok": {
+            "S": "OK"
+          },
+          ":date": {
+            "N": fromDate
+          }
+        },
+        ScanIndexForward: false,
+        Limit: 1
+      };
+      return db.queryAsync(checkParams).then(function(data) {
+        if (data.Count > 0)
+        {
+          buildResult.hasMore = true;
+        }
+        else
+        {
+          buildResult.hasMore = false;
+        }
+        context.succeed(buildResult);
+      });
+    }
+    else
+    {
+      buildResult.hasMore = false;
+      context.succeed(buildResult);
+    }
   })
     .catch(function(err) {
       console.log(err);
@@ -50,7 +90,4 @@ module.exports.handler = function(event, context, cb) {
         errorMessage: 'GETERROR'
       }));
     });
-  return cb(null, {
-    message: 'Go Serverless! Your Lambda function executed successfully!'
-  });
 };

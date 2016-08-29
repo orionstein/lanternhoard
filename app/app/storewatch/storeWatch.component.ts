@@ -12,6 +12,7 @@ import {StoreService} from './store.service';
 export class StoreWatchComponent implements OnInit {
 
   private storeEntries: StoreEntry[]
+  private hasMore
 
   constructor(private _router: Router, private _store: StoreService ) { }
 
@@ -34,9 +35,11 @@ export class StoreWatchComponent implements OnInit {
     this.elm = Elm.StoreWatchElm.embed(document.getElementById('store-watch-elm-embed'));
     this._store.getStoreEntry()
     .subscribe( entries => {
-      _this.storeEntries = entries;
+      _this.hasMore = entries.hasMore;
+      _this.storeEntries = entries.items;
       _this._store.firstItem = _.head(_this.storeEntries);
       _this._store.lastItem = _.last(_this.storeEntries);
+      _this._store.lastItem.lastItem = true;
       setTimeout(function(){
         _this.elm.ports.entries.send(_this.storeEntries);
       }, 0);
@@ -50,9 +53,8 @@ export class StoreWatchComponent implements OnInit {
       .subscribe( entries => {
         if (entries)
         {
-          _this.storeEntries = entries.concat(_this.storeEntries);
+          _this.storeEntries = entries.items.concat(_this.storeEntries);
           _this._store.firstItem = _.head(_this.storeEntries);
-          _this._store.lastItem = _.last(_this.storeEntries);
           _this.elm.ports.entries.send(_this.storeEntries);
         }
       })
@@ -112,15 +114,14 @@ export class StoreWatchComponent implements OnInit {
 
   loadMore() {
     let _this = this;
-    console.log('bwah');
     this._store.loadMoreEntries()
     .subscribe( entries => {
-      console.log(entries);
-      console.log('bwah');
-      _this.storeEntries = _this.storeEntries.concat(entries);
-      console.log(_this.storeEntries);
+      _this.hasMore = entries.hasMore;
+      _this._store.lastItem.lastItem = false;
+      _this.storeEntries = _this.storeEntries.concat(entries.items);
       _this._store.firstItem = _.head(_this.storeEntries);
       _this._store.lastItem = _.last(_this.storeEntries);
+      _this._store.lastItem.lastItem = true;
       _this.elm.ports.entries.send(_this.storeEntries);
     });
   }

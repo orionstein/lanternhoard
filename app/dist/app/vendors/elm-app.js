@@ -9652,20 +9652,24 @@ var _user$project$StoreItem$decodeStoreItem = A2(
 	_elm_lang$core$Json_Decode$maybe(
 		A2(_elm_lang$core$Json_Decode_ops[':='], 'link', _elm_lang$core$Json_Decode$string)));
 
-var _user$project$StoreEntry$StoreEntry = F2(
-	function (a, b) {
-		return {date: a, items: b};
+var _user$project$StoreEntry$StoreEntry = F3(
+	function (a, b, c) {
+		return {date: a, items: b, lastItem: c};
 	});
 var _user$project$StoreEntry$decodeStoreEntry = A2(
 	_user$project$JsonHelper$apply,
 	A2(
 		_user$project$JsonHelper$apply,
-		_user$project$JsonHelper$constructing(_user$project$StoreEntry$StoreEntry),
-		A2(_elm_lang$core$Json_Decode_ops[':='], 'date', _elm_lang$core$Json_Decode$float)),
-	A2(
-		_elm_lang$core$Json_Decode_ops[':='],
-		'items',
-		_elm_lang$core$Json_Decode$list(_user$project$StoreItem$decodeStoreItem)));
+		A2(
+			_user$project$JsonHelper$apply,
+			_user$project$JsonHelper$constructing(_user$project$StoreEntry$StoreEntry),
+			A2(_elm_lang$core$Json_Decode_ops[':='], 'date', _elm_lang$core$Json_Decode$float)),
+		A2(
+			_elm_lang$core$Json_Decode_ops[':='],
+			'items',
+			_elm_lang$core$Json_Decode$list(_user$project$StoreItem$decodeStoreItem))),
+	_elm_lang$core$Json_Decode$maybe(
+		A2(_elm_lang$core$Json_Decode_ops[':='], 'lastItem', _elm_lang$core$Json_Decode$bool)));
 
 var _user$project$StoreItemDiff$storeItemDiffView = F2(
 	function (act, item) {
@@ -9758,7 +9762,8 @@ var _user$project$StoreItemDiff$storeItemDiffView = F2(
 										[
 											_elm_lang$html$Html_Attributes$href(
 											A2(_elm_lang$core$Basics_ops['++'], 'https://shop.kingdomdeath.com', _p1._0)),
-											_elm_lang$html$Html_Attributes$target('_blank')
+											_elm_lang$html$Html_Attributes$target('_blank'),
+											_elm_lang$html$Html_Attributes$rel('noopener noreferrer')
 										]),
 									_elm_lang$core$Native_List.fromArray(
 										[
@@ -9891,7 +9896,7 @@ var _user$project$StoreEntryDiff$storeEntryView = F2(
 			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_elm_lang$html$Html_Attributes$class('entryItem card g--8 g-s--12')
+					entry.lastItem ? _elm_lang$html$Html_Attributes$class('entryItem card g--8 g-s--12 lastItem') : _elm_lang$html$Html_Attributes$class('entryItem card g--8 g-s--12')
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -10080,9 +10085,9 @@ var _user$project$StoreEntryDiff$storeEntryView = F2(
 						]))
 				]));
 	});
-var _user$project$StoreEntryDiff$StoreEntryDiff = F3(
-	function (a, b, c) {
-		return {date: a, items: b, diff: c};
+var _user$project$StoreEntryDiff$StoreEntryDiff = F4(
+	function (a, b, c, d) {
+		return {date: a, items: b, diff: c, lastItem: d};
 	});
 var _user$project$StoreEntryDiff$getEntryDiff = F2(
 	function (a, b) {
@@ -10195,11 +10200,12 @@ var _user$project$StoreEntryDiff$getEntryDiff = F2(
 					0.0);
 			},
 			diffLost);
-		return A3(
+		return A4(
 			_user$project$StoreEntryDiff$StoreEntryDiff,
 			a.date,
 			a.items,
-			A2(_elm_lang$core$Basics_ops['++'], itemDiffNew, itemDiffLost));
+			A2(_elm_lang$core$Basics_ops['++'], itemDiffNew, itemDiffLost),
+			A2(_elm_lang$core$Maybe$withDefault, false, a.lastItem));
 	});
 var _user$project$StoreEntryDiff$diffAllEntries = function (entries) {
 	return A3(
@@ -10213,13 +10219,14 @@ var _user$project$StoreEntryDiff$diffAllEntries = function (entries) {
 						a,
 						A2(
 							_elm_lang$core$Maybe$withDefault,
-							A3(
+							A4(
 								_user$project$StoreEntryDiff$StoreEntryDiff,
 								0.0,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
-									[])),
+									[]),
+								false),
 							_elm_lang$core$List$head(b))),
 					b);
 			}),
@@ -10415,7 +10422,9 @@ var _user$project$StoreWatchElm$view = function (model) {
 								_elm_lang$html$Html$a,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$href('https://shop.kingdomdeath.com')
+										_elm_lang$html$Html_Attributes$href('https://shop.kingdomdeath.com'),
+										_elm_lang$html$Html_Attributes$target('_blank'),
+										_elm_lang$html$Html_Attributes$rel('noopener noreferrer')
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[

@@ -15,7 +15,7 @@ import Json.Encode exposing (..)
 
 diffAllEntries : List StoreEntry -> List StoreEntryDiff
 diffAllEntries entries =
-  List.foldr (\a b -> (getEntryDiff a (List.head b |> Maybe.withDefault (StoreEntryDiff 0.0 [] [] ))) :: b ) [] entries
+  List.foldr (\a b -> (getEntryDiff a (List.head b |> Maybe.withDefault (StoreEntryDiff 0.0 [] [] False ))) :: b ) [] entries
 
 getEntryDiff : StoreEntry -> StoreEntryDiff -> StoreEntryDiff
 getEntryDiff a b =
@@ -49,12 +49,13 @@ getEntryDiff a b =
     itemDiffLost = List.map (\t -> StoreItemDiff (fst t) (snd t) (Nothing) "Lost" 0.0) diffLost
 
   in
-  StoreEntryDiff a.date (a.items) (itemDiffNew ++ itemDiffLost)
+  StoreEntryDiff a.date (a.items) (itemDiffNew ++ itemDiffLost) (Maybe.withDefault False a.lastItem)
 
 type alias StoreEntryDiff = {
   date: Float,
   items: List StoreItem,
-  diff: List StoreItemDiff
+  diff: List StoreItemDiff,
+  lastItem: Bool
 }
 
 storeEntryView : (Json.Encode.Value -> a) -> StoreEntryDiff -> Html a
@@ -64,7 +65,7 @@ storeEntryView act entry =
         Date.fromTime entry.date
 
   in 
-      div [ class "entryItem card g--8 g-s--12" ] [
+      div [ if (entry.lastItem) then (class "entryItem card g--8 g-s--12 lastItem") else (class "entryItem card g--8 g-s--12") ] [
         div [ class "entryDate m-b--20" ] [
           a [ name <| "entry-date-" ++ toString entry.date ] []
         , span [] [ text <| format config "%B %-@d, %Y - %l:%M%p" date ]

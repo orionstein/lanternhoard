@@ -13,7 +13,7 @@ const sass = require('gulp-sass');
 
 // clean the contents of the distribution directory
 gulp.task('clean', function(cb) {
-  del(['dist/'], cb);
+  return del(['dist/'], cb);
 });
 
 gulp.task('buildcss', function() {

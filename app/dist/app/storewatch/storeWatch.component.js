@@ -44,9 +44,11 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                     this.elm = Elm.StoreWatchElm.embed(document.getElementById('store-watch-elm-embed'));
                     this._store.getStoreEntry()
                         .subscribe(function (entries) {
-                        _this.storeEntries = entries;
+                        _this.hasMore = entries.hasMore;
+                        _this.storeEntries = entries.items;
                         _this._store.firstItem = _.head(_this.storeEntries);
                         _this._store.lastItem = _.last(_this.storeEntries);
+                        _this._store.lastItem.lastItem = true;
                         setTimeout(function () {
                             _this.elm.ports.entries.send(_this.storeEntries);
                         }, 0);
@@ -61,9 +63,8 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                         })
                             .subscribe(function (entries) {
                             if (entries) {
-                                _this.storeEntries = entries.concat(_this.storeEntries);
+                                _this.storeEntries = entries.items.concat(_this.storeEntries);
                                 _this._store.firstItem = _.head(_this.storeEntries);
-                                _this._store.lastItem = _.last(_this.storeEntries);
                                 _this.elm.ports.entries.send(_this.storeEntries);
                             }
                         });
@@ -114,15 +115,14 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                 };
                 StoreWatchComponent.prototype.loadMore = function () {
                     var _this = this;
-                    console.log('bwah');
                     this._store.loadMoreEntries()
                         .subscribe(function (entries) {
-                        console.log(entries);
-                        console.log('bwah');
-                        _this.storeEntries = _this.storeEntries.concat(entries);
-                        console.log(_this.storeEntries);
+                        _this.hasMore = entries.hasMore;
+                        _this._store.lastItem.lastItem = false;
+                        _this.storeEntries = _this.storeEntries.concat(entries.items);
                         _this._store.firstItem = _.head(_this.storeEntries);
                         _this._store.lastItem = _.last(_this.storeEntries);
+                        _this._store.lastItem.lastItem = true;
                         _this.elm.ports.entries.send(_this.storeEntries);
                     });
                 };

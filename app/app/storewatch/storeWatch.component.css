@@ -18,3 +18,7 @@
 .entryDate{
   color: #b54;
 }
+
+.entryItem.lastItem{
+  display: none;
+}

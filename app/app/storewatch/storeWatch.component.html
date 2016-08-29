@@ -1,6 +1,6 @@
 <div class="store-watch-elm g--10 m--1">
   <div id="store-watch-elm-embed"></div>
-  <div class="loadMore btn btn--raised btn--accent" (click)="loadMore()">Load More</div>
+  <div class="loadMore btn btn--raised btn--accent" *ngIf="hasMore" (click)="loadMore()">Load More</div>
   <div class="g--4" style="z-index:11">
     <input [(ngModel)]="modals.successModal" type="checkbox" id="modal-success">
     <div class="modal-content g--4">

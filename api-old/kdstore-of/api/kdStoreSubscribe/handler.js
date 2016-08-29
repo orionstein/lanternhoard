@@ -30,6 +30,7 @@ module.exports.handler = function(event, context) {
       context.succeed(true);
     });
   }).catch(function(err, msg) {
+    console.log(err);
     return context.fail(JSON.stringify({
       errorMessage: 'DuplicateNumber'
     }));

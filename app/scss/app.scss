@@ -59,7 +59,10 @@
 }
 
 .entryItem {
-  &::last{
+  &:last{
+    display: none;
+  }
+  &.lastItem{
     display: none;
   }
 }

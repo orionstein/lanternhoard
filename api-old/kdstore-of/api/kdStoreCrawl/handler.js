@@ -84,7 +84,6 @@ module.exports.handler = function(event, context) {
           ScanIndexForward: false
         };
         return db.queryAsync(params).then(function(data) {
-          console.log(data);
           var orig = data.Items[0];
           if (msgpack.pack(q.items).toString() == orig.data.B.toString()) {
             return context.done(null, {
@@ -96,7 +95,6 @@ module.exports.handler = function(event, context) {
         })
           .catch(function(err) {
             console.log(err);
-            console.log('nada');
             createObject(q, context);
           });
       }

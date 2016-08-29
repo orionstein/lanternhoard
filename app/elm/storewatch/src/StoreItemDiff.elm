@@ -27,7 +27,7 @@ storeItemDiffView act item =
   , case item.link of
       Just link ->
         td [ class "itemName" ] [
-          a [ href <| "https://shop.kingdomdeath.com" ++ link, target "_blank" ] [
+          a [ href <| "https://shop.kingdomdeath.com" ++ link, target "_blank", rel "noopener noreferrer" ] [
             text item.title
           ]
         ]

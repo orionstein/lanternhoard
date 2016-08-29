@@ -104,7 +104,7 @@ view model =
       , div [ class "description clearfix g--8 g-s--12" ] [
           p [ class "description" ] [
             text "The Lantern Hoard Store Watch was created to record and compare the storefront at "
-          , a [ href "https://shop.kingdomdeath.com" ] [ text "shop.kingdomdeath.com" ]
+          , a [ href "https://shop.kingdomdeath.com", target "_blank", rel "noopener noreferrer" ] [ text "shop.kingdomdeath.com" ]
           , text "."
           ]
         , p [ class "description" ] [

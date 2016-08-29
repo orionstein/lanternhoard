@@ -9,22 +9,22 @@ export class StoreService {
   constructor (private http: Http) {}
 
   //private url = 'https://s3.amazonaws.com/kingdomdeath/kingdomdeathstore.json';  // URL to web api
-  private dataUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStoreGetItems';  // URL to web api
-  private pageUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStorePageItems';  // URL to web api
-  private apiUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStoreSubscribe';  // URL to web api
+  private dataUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/prod/kdStoreGetItems';  // URL to web api
+  private pageUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/prod/kdStorePageItems';  // URL to web api
+  private apiUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/prod/kdStoreSubscribe';  // URL to web api
 
   public firstItem;
   public lastItem;
 
   loadMoreEntries() {
-    let lmUrl = this.pageUrl + '/backward/' + this.lastItem.date + '/10';
+    let lmUrl = this.pageUrl + '/backward/' + this.lastItem.date + '/11';
     let getCall = this.http.get(lmUrl)
     .map(x => x.json())
     return getCall
   }
 
   getStoreEntry () {
-    let getCall = this.http.get(this.dataUrl)
+    let getCall = this.http.get(this.dataUrl + '/11')
     .map(x => x.json())
     return getCall
   }
