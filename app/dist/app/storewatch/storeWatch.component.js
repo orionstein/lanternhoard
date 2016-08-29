@@ -118,6 +118,7 @@ System.register(['angular2/core', 'angular2/router', './store.service'], functio
                     this._store.loadMoreEntries()
                         .subscribe(function (entries) {
                         _this.hasMore = entries.hasMore;
+                        console.log(_this.hasMore);
                         _this._store.lastItem.lastItem = false;
                         _this.storeEntries = _this.storeEntries.concat(entries.items);
                         _this._store.firstItem = _.head(_this.storeEntries);
