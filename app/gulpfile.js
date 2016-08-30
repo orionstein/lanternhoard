@@ -14,12 +14,21 @@ const sass = require('gulp-sass');
 const pump = require('pump');
 const sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('set-dev-node-env', function() {
-  return process.env.NODE_ENV = 'development';
+gulp.task('set-node-env', function(cb) {
+  process.env.API_URL = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/';
+  cb();
 });
 
-gulp.task('set-prod-node-env', function() {
-  return process.env.NODE_ENV = 'production';
+gulp.task('set-dev-node-env', ['set-node-env'], function(cb) {
+  process.env.NODE_ENV = 'development';
+  process.env.API_SHARD = 'dev';
+  cb();
+});
+
+gulp.task('set-prod-node-env', ['set-node-env'], function(cb) {
+  process.env.NODE_ENV = 'production';
+  process.env.API_SHARD = 'prod';
+  cb();
 });
 
 // clean the contents of the distribution directory
@@ -204,11 +213,13 @@ gulp.task('compile', function(cb) {
     return gulp
       .src('app/**/*.ts')
       .pipe(typescript(tscConfig.compilerOptions))
+      .pipe(preprocess())
       .pipe(gulp.dest('dist/app'));
   } else {
     return gulp
       .src('app/**/*.ts')
       .pipe(typescript(tscReleaseConfig.compilerOptions))
+      .pipe(preprocess())
       .pipe(uglify({
         compress: {
           drop_console: true

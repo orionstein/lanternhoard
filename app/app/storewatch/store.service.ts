@@ -8,10 +8,10 @@ export class StoreService {
 
   constructor (private http: Http) {}
 
-  //private url = 'https://s3.amazonaws.com/kingdomdeath/kingdomdeathstore.json';  // URL to web api
-  private dataUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStoreGetItems';  // URL to web api
-  private pageUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStorePageItems';  // URL to web api
-  private apiUrl = 'https://v3q0i4ynpb.execute-api.us-east-1.amazonaws.com/dev/kdStoreSubscribe';  // URL to web api
+  private baseUrl = '/*@echo API_URL*/'+'/*@echo API_SHARD*/';
+  private dataUrl = this.baseUrl+'/kdStoreGetItems';  // URL to web api
+  private pageUrl = this.baseUrl+'/kdStorePageItems';  // URL to web api
+  private apiUrl =  this.baseUrl+'/kdStoreSubscribe';  // URL to web api
 
   public firstItem;
   public lastItem;

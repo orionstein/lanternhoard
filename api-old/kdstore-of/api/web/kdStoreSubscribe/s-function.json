@@ -5,7 +5,7 @@
   "customName": false,
   "customRole": false,
   "handler": "api/web/kdStoreSubscribe/handler.handler",
-  "timeout": 6,
+  "timeout": 20,
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
