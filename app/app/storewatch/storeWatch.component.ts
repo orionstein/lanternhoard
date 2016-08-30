@@ -32,6 +32,8 @@ export class StoreWatchComponent implements OnInit {
 
     this.pollStore = true;
 
+    console.log('bwa hwaaa');
+
     this.elm = Elm.StoreWatchElm.embed(document.getElementById('store-watch-elm-embed'));
     this._store.getStoreEntry()
     .subscribe( entries => {
@@ -114,6 +116,7 @@ export class StoreWatchComponent implements OnInit {
 
   loadMore() {
     let _this = this;
+    console.log('loading');
     this._store.loadMoreEntries()
     .subscribe( entries => {
       _this.hasMore = entries.hasMore;

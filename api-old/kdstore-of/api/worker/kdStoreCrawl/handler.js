@@ -2,8 +2,8 @@
 
 var request = require('request');
 var cheerio = require('cheerio');
-var dynamo = require('../shared/dynamoDocHelper');
-var db = require('../shared/dynamoHelper');
+var dynamo = require('../../shared/dynamoDocHelper');
+var db = require('../../shared/dynamoHelper');
 var msgpack = require('msgpack');
 
 function createObject(obj, context) {

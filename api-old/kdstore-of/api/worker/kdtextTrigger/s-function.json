@@ -1,10 +1,10 @@
 {
-  "name": "kdstoreScrub",
+  "name": "kdtextTrigger",
   "runtime": "nodejs",
   "description": "Serverless Lambda function for project: kdstore-of",
   "customName": false,
   "customRole": false,
-  "handler": "api/kdstoreScrub/handler.handler",
+  "handler": "api/worker/kdtextTrigger/handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "authorizer": {},
@@ -12,8 +12,7 @@
     "excludePatterns": []
   },
   "endpoints": [],
-  "events": [
-  ],
+  "events": [],
   "environment": {
     "SERVERLESS_PROJECT": "kdstore-of",
     "SERVERLESS_STAGE": "${stage}",

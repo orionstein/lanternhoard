@@ -22,8 +22,8 @@ badd +16 gulpfile.js
 badd +1 app/home/home.component.html
 badd +6 app/app.component.html
 badd +34 index.html
-badd +19 app/storewatch/store.service.ts
-badd +1 app/storewatch/storeWatch.component.ts
+badd +11 app/storewatch/store.service.ts
+badd +119 app/storewatch/storeWatch.component.ts
 badd +3 app/storewatch/storeWatch.component.html
 badd +23 app/storewatch/storeWatch.component.css
 badd +1 app/storewatch/storeItem.ts
@@ -105,21 +105,14 @@ badd +66 scss/app.scss
 badd +9 Makefile
 badd +1 dist-make
 badd +30 elm/storewatch/src/StoreItemDiff.elm
-badd +0 ~/projects/git/lanternhoard/.git/index
 argglobal
 silent! argdel *
-edit ~/projects/git/lanternhoard/.git/index
+edit app/storewatch/storeWatch.component.ts
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 12 + 15) / 30)
-exe '2resize ' . ((&lines * 14 + 15) / 30)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -129,44 +122,19 @@ setlocal fdl=1
 setlocal fml=10
 setlocal fdn=2
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 6) / 12)
+12
+normal! zo
+24
+normal! zo
+115
+normal! zo
+let s:l = 119 - ((13 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+119
+normal! 033|
 lcd ~/projects/git/lanternhoard/app
-wincmd w
-argglobal
-edit ~/projects/git/lanternhoard/app/app/storewatch/store.service.ts
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=1
-setlocal fml=10
-setlocal fdn=2
-setlocal fen
-7
-normal! zo
-19
-normal! zo
-26
-normal! zo
-32
-normal! zo
-42
-normal! zo
-let s:l = 19 - ((1 * winheight(0) + 7) / 14)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-19
-normal! 021|
-lcd ~/projects/git/lanternhoard/app
-wincmd w
-exe '1resize ' . ((&lines * 12 + 15) / 30)
-exe '2resize ' . ((&lines * 14 + 15) / 30)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

@@ -1,10 +1,10 @@
 {
-  "name": "mailhandler",
+  "name": "kdstoreScrubExperimental",
   "runtime": "nodejs4.3",
   "description": "Serverless Lambda function for project: kdstore-of",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "api/deprecated/kdstoreScrubExperimental/handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "authorizer": {},
@@ -12,9 +12,10 @@
     "excludePatterns": []
   },
   "endpoints": [],
-  "events": [],
+  "events": [
+  ],
   "environment": {
-    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_PROJECT": "kdstore-of",
     "SERVERLESS_STAGE": "${stage}",
     "SERVERLESS_REGION": "${region}"
   },

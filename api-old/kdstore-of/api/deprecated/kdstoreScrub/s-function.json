@@ -1,10 +1,10 @@
 {
-  "name": "kdstoreScrubExperimental",
-  "runtime": "nodejs4.3",
+  "name": "kdstoreScrub",
+  "runtime": "nodejs",
   "description": "Serverless Lambda function for project: kdstore-of",
   "customName": false,
   "customRole": false,
-  "handler": "api/kdstoreScrubExperimental/handler.handler",
+  "handler": "api/deprecated/kdstoreScrub/handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "authorizer": {},

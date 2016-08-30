@@ -4,8 +4,8 @@ var accountSid = 'AC00d0daf67c10a7cce79efbdb2941f429';
 var authToken = '318a494e0195ca17210703ca940d8b22';
 var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, authToken);
-var dynamo = require('../shared/dynamoDocHelper');
-var db = require('../shared/dynamoHelper');
+var dynamo = require('../../shared/dynamoDocHelper');
+var db = require('../../shared/dynamoHelper');
 
 module.exports.handler = function(event, context) {
   var number = event.number;

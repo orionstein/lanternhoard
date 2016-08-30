@@ -1,6 +1,6 @@
 'use strict';
 
-var s3 = require('../shared/s3Helper');
+var s3 = require('../../shared/s3Helper');
 var request = require('request');
 var cheerio = require('cheerio');
 

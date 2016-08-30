@@ -1,6 +1,6 @@
 'use strict';
 var querystring = require('querystring');
-var db = require('../shared/dynamoHelper');
+var db = require('../../shared/dynamoHelper');
 
 module.exports.handler = function(event, context, cb) {
   var parsedparams = querystring.parse(event.postBody);

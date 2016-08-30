@@ -1,7 +1,7 @@
 'use strict';
 
-const dynamo = require('../shared/dynamoDocHelper');
-const db = require('../shared/dynamoHelper');
+const dynamo = require('../../shared/dynamoDocHelper');
+const db = require('../../shared/dynamoHelper');
 const msgpack = require('msgpack');
 const _ = require('lodash');
 

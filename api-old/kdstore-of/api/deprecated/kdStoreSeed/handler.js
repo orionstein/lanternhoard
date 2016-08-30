@@ -1,8 +1,8 @@
 'use strict';
-var dynamo = require('../shared/dynamoDocHelper');
-var db = require('../shared/dynamoHelper');
+var dynamo = require('../../shared/dynamoDocHelper');
+var db = require('../../shared/dynamoHelper');
 var msgpack = require('msgpack');
-var s3 = require('../shared/s3Helper');
+var s3 = require('../../shared/s3Helper');
 var _ = require('lodash');
 
 function createObject(obj, context) {

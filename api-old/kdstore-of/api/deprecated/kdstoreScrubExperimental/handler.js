@@ -1,9 +1,9 @@
 'use strict';
 
-var s3 = require('../shared/s3Helper');
+var s3 = require('../../shared/s3Helper');
 var cheerio = require('cheerio');
-var kd = require('../shared/kdmpull.node');
-var db = require('../shared/dynamoHelper');
+var kd = require('../../shared/kdmpull.node');
+var db = require('../../shared/dynamoHelper');
 
 function createObject(body, context) {
   s3.putObjectAsync({
